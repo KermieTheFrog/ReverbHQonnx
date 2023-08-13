@@ -39,7 +39,7 @@ def ReverbHQ(input_path,input_path2,  Denoise, Normalize, Chunks, Shifts):
     normalise = '--normalise' if normalise else ''
     denoise = '--denoise' if denoise else ''
     margin = 44100
-    %cd /content/drive/MyDrive/MDX_Colab/
+    os.chdir(path="/content/drive/MyDrive/MDX_Colab/")
     os.system(f"python main.py --n_fft {n_fft} --dim_f {dim_f} --dim_t {dim_t} --margin {margin} -i \"{track}\" --mixing {mixing_algorithm} --onnx \"{'onnx/(de)Reverb HQ By FoxJoy'}\" --model off  --shifts {round(shifts)} --stems v --invert v --chunks {chunks} --compensate {amplitude_compensation} {normalise} {denoise}")
     os.remove(track)
     return (f"--------------------------------------------------\nSuccessfully completed music demixing.\nTime Taken: {time.time()-start_time:.1f} Seconds\nResults: {(str(input_path.name) if input_path else input_path2)}\n--------------------------------------------------")
@@ -51,7 +51,7 @@ def MDX23(input_path, input_path2, ChunkSize, vocalsOnly):
 
     filename =  Path(folder_path).stem
     Path(output_folder,filename).mkdir(parents=True, exist_ok=True)
-    %cd /content/MVSEP-MDX23-Colab
+    os.chdir(path = "/content/MVSEP-MDX23-Colab")
     os.system(f'python inference.py --large_gpu --chunk_size {ChunkSize} --input_audio "{folder_path}" --vocals_only "{vocalsOnly}" --output_folder "{output_folder}"/"{filename}"')
     return (f"--------------------------------------------------\nSuccessfully completed audio seperation.\nTime Taken: {time.time()-start_time:.1f} Seconds\nResults: {output_folder}/{filename}\n--------------------------------------------------")
 
