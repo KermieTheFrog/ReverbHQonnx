@@ -42,7 +42,7 @@ def ReverbHQ(input_path,input_path2,  Denoise, Normalize, Chunks, Shifts):
     os.chdir(path="/content/drive/MyDrive/MDX_Colab/")
     os.system(f"python main.py --n_fft {n_fft} --dim_f {dim_f} --dim_t {dim_t} --margin {margin} -i \"{track}\" --mixing {mixing_algorithm} --onnx \"{'onnx/(de)Reverb HQ By FoxJoy'}\" --model off  --shifts {round(shifts)} --stems v --invert v --chunks {chunks} --compensate {amplitude_compensation} {normalise} {denoise}")
     os.remove(track)
-    return (f"--------------------------------------------------\nSuccessfully completed music demixing.\nTime Taken: {time.time()-start_time:.1f} Seconds\nResults: {(str(input_path.name) if input_path else input_path2)}\n--------------------------------------------------")
+    return (f"--------------------------------------------------\nSuccessfully completed music demixing.\nTime Taken: {time.time()-start_time:.1f} Seconds\nResults: /content/drive/MyDrive/MDX_Colab/separated/{Path((str(input_path.name) if input_path else input_path2)).stem}\n--------------------------------------------------")
 
 def MDX23(input_path, input_path2, ChunkSize, vocalsOnly):
     start_time = time.time()
